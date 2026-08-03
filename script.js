@@ -9,6 +9,8 @@ const sandStreamEl = document.getElementById("sandStream");
 const params = new URLSearchParams(window.location.search);
 const secretCode = params.get("code") || "149";
 const HOURGLASS_DURATION_MS = 2 * 60 * 60 * 1000;
+const URGENT_THRESHOLD_MS = 5 * 60 * 1000;
+const FINAL_THRESHOLD_MS = 30 * 1000;
 
 function parseTargetDate() {
   const target = new Date();
@@ -48,10 +50,16 @@ function updateSand(remainingMs) {
 function revealCode() {
   codeBoxEl.classList.remove("hidden");
   document.body.classList.add("code-revealed");
+  document.body.classList.add("spell-cast");
+  document.body.classList.add("reveal-party");
   countdownEl.classList.add("hidden");
   if (timerLabelEl) {
     timerLabelEl.classList.add("hidden");
   }
+  setTimeout(() => {
+    document.body.classList.remove("spell-cast");
+    document.body.classList.remove("reveal-party");
+  }, 1200);
 }
 
 function tick() {
@@ -65,6 +73,8 @@ function tick() {
   }
 
   const remainingSeconds = Math.floor(remainingMs / 1000);
+  countdownEl.classList.toggle("is-urgent", remainingMs <= URGENT_THRESHOLD_MS);
+  countdownEl.classList.toggle("is-final", remainingMs <= FINAL_THRESHOLD_MS);
   countdownEl.textContent = formatDuration(remainingSeconds);
   updateSand(remainingMs);
   return false;

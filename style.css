@@ -58,6 +58,46 @@ html {
     radial-gradient(1.4px 1.4px at 90% 75%, rgba(255, 242, 202, 0.6), transparent 60%);
   pointer-events: none;
   opacity: 0.8;
+  animation: twinkle 9s ease-in-out infinite alternate;
+}
+
+.magic-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orb {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(210, 255, 219, 1) 0%, rgba(108, 227, 127, 0.2) 62%, rgba(108, 227, 127, 0) 100%);
+  box-shadow: 0 0 26px rgba(108, 227, 127, 0.78);
+  filter: blur(0.3px);
+}
+
+.orb-1 {
+  left: 9%;
+  top: 64%;
+  animation: orbFloatA 12s ease-in-out infinite;
+}
+
+.orb-2 {
+  right: 11%;
+  top: 28%;
+  width: 14px;
+  height: 14px;
+  animation: orbFloatB 10.5s ease-in-out infinite;
+}
+
+.orb-3 {
+  left: 76%;
+  top: 74%;
+  width: 12px;
+  height: 12px;
+  animation: orbFloatC 9.5s ease-in-out infinite;
 }
 
 .card {
@@ -126,6 +166,7 @@ html {
     radial-gradient(circle at 30% 25%, rgba(247, 241, 223, 0.08), transparent 55%),
     linear-gradient(180deg, rgba(9, 18, 30, 0.85), rgba(4, 10, 18, 0.9));
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(247, 241, 223, 0.08);
+  animation: auraPulse 6.5s ease-in-out infinite;
 }
 
 .title-image {
@@ -206,6 +247,7 @@ html {
   height: auto;
   position: relative;
   filter: drop-shadow(0 20px 26px rgba(0, 0, 0, 0.55));
+  animation: glassSway 7s ease-in-out infinite;
 }
 
 .hourglass-image {
@@ -281,6 +323,39 @@ html {
   font-size: clamp(2rem, 8vw, 3.4rem);
   letter-spacing: 0.05em;
   margin: 0.1rem 0 0.3rem;
+  color: #ffe7b0;
+  text-shadow: 0 0 0 rgba(232, 188, 92, 0);
+  transition: text-shadow 240ms ease, transform 240ms ease, color 240ms ease, filter 240ms ease;
+  position: relative;
+  isolation: isolate;
+}
+
+.countdown::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(94vw, 380px);
+  height: clamp(54px, 9vw, 84px);
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(232, 188, 92, 0.24);
+  border-radius: 999px;
+  opacity: 0.6;
+  z-index: -1;
+  animation: sigilSpin 16s linear infinite;
+}
+
+.countdown.is-urgent {
+  color: #ffeb95;
+  text-shadow: 0 0 18px rgba(232, 188, 92, 0.68);
+  filter: saturate(1.2);
+  animation: urgentPulse 0.95s ease-in-out infinite;
+}
+
+.countdown.is-final {
+  color: #fff0b8;
+  text-shadow: 0 0 22px rgba(255, 211, 103, 0.95);
+  animation: finalShake 0.42s ease-in-out infinite;
 }
 
 .target-time {
@@ -295,6 +370,19 @@ html {
   border-radius: 14px;
   background: linear-gradient(180deg, rgba(248, 236, 193, 0.08), rgba(176, 124, 34, 0.08));
   animation: reveal 500ms ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.code-box::before {
+  content: "";
+  position: absolute;
+  inset: -120% -35% auto;
+  height: 140%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0), rgba(248, 236, 193, 0.24), rgba(255, 255, 255, 0));
+  transform: translateX(-30%) rotate(8deg);
+  animation: runeSweep 2.6s ease-out 1;
+  pointer-events: none;
 }
 
 .code-label {
@@ -313,12 +401,36 @@ html {
   word-break: break-word;
 }
 
+body.code-revealed .code {
+  animation: codeGlow 1.4s ease-out 1;
+}
+
 .hidden {
   display: none;
 }
 
 body.code-revealed .card {
   box-shadow: 0 0 0 1px rgba(232, 188, 92, 0.5), 0 32px 54px rgba(0, 0, 0, 0.45), 0 0 36px rgba(232, 188, 92, 0.25);
+}
+
+body.code-revealed .code-box {
+  animation: reveal 500ms ease-out, kidsPop 680ms ease-out;
+}
+
+body.reveal-party .card {
+  animation: partyPulse 900ms ease-out 1;
+}
+
+body.spell-cast .card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 50% 65%, rgba(188, 255, 201, 0.22), transparent 35%),
+    radial-gradient(circle at 50% 30%, rgba(232, 188, 92, 0.18), transparent 36%);
+  pointer-events: none;
+  animation: spellFlash 1.05s ease-out 1;
 }
 
 @keyframes rise {
@@ -361,6 +473,185 @@ body.code-revealed .card {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 0.55;
+  }
+  100% {
+    opacity: 0.92;
+  }
+}
+
+@keyframes auraPulse {
+  0% {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(247, 241, 223, 0.08);
+  }
+  50% {
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45), 0 0 18px rgba(232, 188, 92, 0.2), inset 0 0 0 1px rgba(247, 241, 223, 0.14);
+  }
+  100% {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(247, 241, 223, 0.08);
+  }
+}
+
+@keyframes glassSway {
+  0% {
+    transform: translateY(0) rotate(-0.8deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(0.8deg);
+  }
+  100% {
+    transform: translateY(0) rotate(-0.8deg);
+  }
+}
+
+@keyframes urgentPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.035);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes finalShake {
+  0% {
+    transform: translateX(0) scale(1);
+  }
+  25% {
+    transform: translateX(-2px) scale(1.03);
+  }
+  50% {
+    transform: translateX(2px) scale(1.04);
+  }
+  75% {
+    transform: translateX(-2px) scale(1.03);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes kidsPop {
+  0% {
+    transform: scale(0.9);
+  }
+  60% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes partyPulse {
+  0% {
+    box-shadow: 0 0 0 1px rgba(232, 188, 92, 0.5), 0 32px 54px rgba(0, 0, 0, 0.45), 0 0 36px rgba(232, 188, 92, 0.25);
+  }
+  55% {
+    box-shadow: 0 0 0 2px rgba(255, 226, 138, 0.9), 0 38px 58px rgba(0, 0, 0, 0.5), 0 0 52px rgba(131, 255, 170, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 1px rgba(232, 188, 92, 0.5), 0 32px 54px rgba(0, 0, 0, 0.45), 0 0 36px rgba(232, 188, 92, 0.25);
+  }
+}
+
+@keyframes runeSweep {
+  0% {
+    transform: translateX(-42%) rotate(8deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(110%) rotate(8deg);
+    opacity: 0;
+  }
+}
+
+@keyframes codeGlow {
+  0% {
+    text-shadow: 0 0 0 rgba(255, 243, 205, 0);
+  }
+  45% {
+    text-shadow: 0 0 16px rgba(255, 243, 205, 0.85);
+  }
+  100% {
+    text-shadow: 0 0 0 rgba(255, 243, 205, 0);
+  }
+}
+
+@keyframes orbFloatA {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate(24px, -22px) scale(1.16);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.55;
+  }
+}
+
+@keyframes orbFloatB {
+  0% {
+    transform: translate(0, 0) scale(0.95);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-26px, 24px) scale(1.2);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(0, 0) scale(0.95);
+    opacity: 0.5;
+  }
+}
+
+@keyframes orbFloatC {
+  0% {
+    transform: translate(0, 0) scale(0.9);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate(-18px, -18px) scale(1.15);
+    opacity: 0.86;
+  }
+  100% {
+    transform: translate(0, 0) scale(0.9);
+    opacity: 0.45;
+  }
+}
+
+@keyframes sigilSpin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes spellFlash {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
@@ -547,5 +838,28 @@ body.code-revealed .card {
   .code-box {
     margin-top: 0.3rem;
     padding: 0.7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stars,
+  .magic-orbs,
+  .orb,
+  .title-medallion,
+  .title-image,
+  .hourglass,
+  .sand-stream,
+  .countdown::before,
+  .countdown.is-urgent,
+  .countdown.is-final,
+  .code-box,
+  .code-box::before,
+  body.reveal-party .card,
+  body.spell-cast .card::after,
+  body.code-revealed .code,
+  .fog,
+  .card {
+    animation: none !important;
+    transition: none !important;
   }
 }
