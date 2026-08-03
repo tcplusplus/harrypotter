@@ -92,18 +92,32 @@ html {
   pointer-events: none;
 }
 
-.title-banner {
-  margin: 0.05rem auto 1.15rem;
-  width: min(96%, 680px);
+.hero-row {
   display: grid;
-  justify-items: center;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 0 auto 1rem;
+  width: min(100%, 940px);
+}
+
+.title-banner {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: 0.4rem;
+  border: 1px solid rgba(232, 188, 92, 0.22);
+  background: linear-gradient(180deg, rgba(16, 23, 34, 0.78), rgba(7, 11, 18, 0.9));
 }
 
 .title-medallion {
-  width: clamp(170px, 22vw, 250px);
-  aspect-ratio: 1;
-  padding: 8px;
-  border-radius: 26px;
+  width: 100%;
+  height: 100%;
+  min-height: 290px;
+  padding: 0;
+  border-radius: 18px;
+  overflow: hidden;
   border: 1px solid rgba(232, 188, 92, 0.4);
   background:
     radial-gradient(circle at 30% 25%, rgba(247, 241, 223, 0.08), transparent 55%),
@@ -115,7 +129,7 @@ html {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 0;
   display: block;
   filter: contrast(1.03) saturate(1.04) drop-shadow(0 6px 12px rgba(0, 0, 0, 0.45));
   animation: floatTitle 4.6s ease-in-out infinite;
@@ -139,14 +153,6 @@ html {
   font-size: 0.7rem;
 }
 
-.ritual-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  margin: 0 auto;
-  width: min(100%, 940px);
-}
-
 .ritual-column {
   border-radius: 18px;
 }
@@ -157,7 +163,14 @@ html {
   padding: 0.35rem;
 }
 
+.hourglass-panel {
+  display: grid;
+  place-items: center;
+}
+
 .info-column {
+  width: min(100%, 940px);
+  margin: 0 auto;
   padding: 1rem 0.9rem 1.1rem;
   border: 1px solid rgba(232, 188, 92, 0.28);
   background:
@@ -264,8 +277,7 @@ html {
 }
 
 .target-time {
-  margin: 0;
-  color: #bfd8cf;
+  display: none;
 }
 
 .code-box {
@@ -374,13 +386,8 @@ body.code-revealed .card {
     height: 322px;
   }
 
-  .title-banner {
-    margin-bottom: 0.9rem;
-  }
-
   .title-medallion {
-    width: clamp(150px, 43vw, 195px);
-    border-radius: 22px;
+    min-height: 160px;
   }
 
   .main-title {
@@ -393,17 +400,19 @@ body.code-revealed .card {
     padding: 1.45rem 1.3rem 1.35rem;
   }
 
-  .ritual-grid {
-    grid-template-columns: minmax(320px, 0.98fr) minmax(290px, 1.02fr);
+  .hero-row {
+    grid-template-columns: minmax(320px, 0.95fr) minmax(290px, 1.05fr);
     gap: 1.05rem;
     align-items: stretch;
   }
 
   .info-column {
-    min-height: 455px;
-    display: grid;
-    align-content: center;
-    padding: 1.2rem 1rem;
+    min-height: 0;
+    padding: 1.15rem 1rem;
+  }
+
+  .title-medallion {
+    min-height: 448px;
   }
 
   .hourglass-wrap {
@@ -427,12 +436,12 @@ body.code-revealed .card {
     padding: 1.5rem 1.4rem;
   }
 
-  .ritual-grid {
+  .hero-row {
     grid-template-columns: 400px minmax(360px, 1fr);
     gap: 1.2rem;
   }
 
   .title-medallion {
-    width: 235px;
+    min-height: 448px;
   }
 }

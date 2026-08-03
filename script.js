@@ -1,5 +1,4 @@
 const countdownEl = document.getElementById("countdown");
-const targetTimeLabelEl = document.getElementById("targetTimeLabel");
 const codeBoxEl = document.getElementById("codeBox");
 const secretCodeEl = document.getElementById("secretCode");
 const topSandEl = document.getElementById("topSand");
@@ -19,7 +18,6 @@ function parseTargetDate() {
 const target = parseTargetDate();
 
 secretCodeEl.textContent = secretCode;
-targetTimeLabelEl.textContent = `Doeltijd: ${target.toLocaleString("nl-NL")}`;
 
 function formatDuration(totalSeconds) {
   const days = Math.floor(totalSeconds / 86400);
@@ -49,7 +47,6 @@ function updateSand(remainingMs) {
 function revealCode() {
   codeBoxEl.classList.remove("hidden");
   document.body.classList.add("code-revealed");
-  targetTimeLabelEl.textContent = "Het moment is daar. De poort is geopend.";
   countdownEl.textContent = "00:00:00";
 }
 

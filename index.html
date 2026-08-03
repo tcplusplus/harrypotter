@@ -17,16 +17,14 @@
     <div class="stars" aria-hidden="true"></div>
 
     <main class="card">
-      <header class="title-banner">
-        <div class="title-medallion">
-          <img class="title-image" src="title.png" alt="De Geheime Spreukenmissie" />
-        </div>
-        <h1 class="main-title">De Geheime Spreukenmissie</h1>
-        <p class="title-tagline">Vind de spreuk voordat de tijd om is</p>
-      </header>
+      <section class="hero-row">
+        <header class="title-banner ritual-column">
+          <div class="title-medallion">
+            <img class="title-image" src="title.png" alt="De Geheime Spreukenmissie" />
+          </div>
+        </header>
 
-      <section class="ritual-grid">
-        <article class="ritual-column glass-column">
+        <article class="ritual-column glass-column hourglass-panel">
           <section class="hourglass-wrap" aria-label="Aftellende zandloper">
             <div class="hourglass" id="hourglass">
               <img class="hourglass-image" src="zandloper.png" alt="Zandloper" />
@@ -40,18 +38,17 @@
             </div>
           </section>
         </article>
-
-        <article class="ritual-column info-column">
-          <p class="timer-label">Tijd tot de spreuk</p>
-          <div class="countdown" id="countdown">--:--:--</div>
-          <p class="target-time" id="targetTimeLabel"></p>
-
-          <section class="code-box hidden" id="codeBox" aria-live="polite">
-            <p class="code-label">Geheime code:</p>
-            <p class="code" id="secretCode"></p>
-          </section>
-        </article>
       </section>
+
+      <article class="ritual-column info-column">
+        <p class="timer-label">Tijd tot de spreuk</p>
+        <div class="countdown" id="countdown">--:--:--</div>
+
+        <section class="code-box hidden" id="codeBox" aria-live="polite">
+          <p class="code-label">Geheime code:</p>
+          <p class="code" id="secretCode"></p>
+        </section>
+      </article>
     </main>
 
     <script src="script.js"></script>
