@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>De Geheime Spreukenmissie</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Quicksand:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="fog"></div>
+    <div class="stars" aria-hidden="true"></div>
+
+    <main class="card">
+      <header class="title-banner">
+        <div class="title-medallion">
+          <img class="title-image" src="title.png" alt="De Geheime Spreukenmissie" />
+        </div>
+        <h1 class="main-title">De Geheime Spreukenmissie</h1>
+        <p class="title-tagline">Vind de spreuk voordat de tijd om is</p>
+      </header>
+
+      <section class="ritual-grid">
+        <article class="ritual-column glass-column">
+          <section class="hourglass-wrap" aria-label="Aftellende zandloper">
+            <div class="hourglass" id="hourglass">
+              <img class="hourglass-image" src="zandloper.png" alt="Zandloper" />
+              <div class="sand-bulb sand-bulb-top">
+                <div class="sand top-sand" id="topSand"></div>
+              </div>
+              <div class="sand-stream" id="sandStream"></div>
+              <div class="sand-bulb sand-bulb-bottom">
+                <div class="sand bottom-sand" id="bottomSand"></div>
+              </div>
+            </div>
+          </section>
+        </article>
+
+        <article class="ritual-column info-column">
+          <p class="timer-label">Tijd tot de spreuk</p>
+          <div class="countdown" id="countdown">--:--:--</div>
+          <p class="target-time" id="targetTimeLabel"></p>
+
+          <section class="code-box hidden" id="codeBox" aria-live="polite">
+            <p class="code-label">Geheime code:</p>
+            <p class="code" id="secretCode"></p>
+          </section>
+        </article>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
