@@ -1,4 +1,5 @@
 const countdownEl = document.getElementById("countdown");
+const timerLabelEl = document.querySelector(".timer-label");
 const codeBoxEl = document.getElementById("codeBox");
 const secretCodeEl = document.getElementById("secretCode");
 const topSandEl = document.getElementById("topSand");
@@ -47,7 +48,10 @@ function updateSand(remainingMs) {
 function revealCode() {
   codeBoxEl.classList.remove("hidden");
   document.body.classList.add("code-revealed");
-  countdownEl.textContent = "00:00:00";
+  countdownEl.classList.add("hidden");
+  if (timerLabelEl) {
+    timerLabelEl.classList.add("hidden");
+  }
 }
 
 function tick() {
