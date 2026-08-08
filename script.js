@@ -7,14 +7,15 @@ const bottomSandEl = document.getElementById("bottomSand");
 const sandStreamEl = document.getElementById("sandStream");
 
 const params = new URLSearchParams(window.location.search);
-const secretCode = params.get("code") || "149";
+const secretCode = params.get("code") || "067";
 const HOURGLASS_DURATION_MS = 2 * 60 * 60 * 1000;
 const URGENT_THRESHOLD_MS = 5 * 60 * 1000;
 const FINAL_THRESHOLD_MS = 30 * 1000;
 
 function parseTargetDate() {
   const target = new Date();
-  target.setHours(22, 20, 0, 0);
+  target.setMonth(7, 9);
+  target.setHours(13, 0, 0, 0);
   return target;
 }
 
